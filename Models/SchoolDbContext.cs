@@ -21,6 +21,7 @@ namespace Labb4_SQL.Models
         public DbSet<Student> Students { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<ClassCourse> ClassCourses { get; set; }
         public DbSet<Grade> Grades { get; set; }
     }
 }
