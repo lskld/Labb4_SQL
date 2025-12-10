@@ -17,5 +17,6 @@ namespace Labb4_SQL.Models
         public int Salary { get; set; }
         public int DepartmentId { get; set; }
         public Department Department { get; set; } = null!;
+        public Class? ResponsibleForClass { get; set; }
     }
 }

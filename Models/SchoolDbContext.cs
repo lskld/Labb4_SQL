@@ -18,7 +18,22 @@ namespace Labb4_SQL.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
+            /*Creating a 1:1 relationship between Class & Employee:
+             *This makes the index EmployeeId unique for each class, so it can only have one responsible teacher,
+             *and each teacher/employee can only be responsible for one class. The relationship is made using the 
+             *foreign key EmployeeId, which allows navigation between Class and Employee.
+             */
 
+            modelBuilder.Entity<Class>()
+                .HasIndex(c => c.EmployeeId)
+                .IsUnique();
+
+            modelBuilder.Entity<Class>()
+                .HasOne(c => c.ResponsibleTeacher)
+                .WithOne(e => e.ResponsibleForClass)
+                .HasForeignKey<Class>(c => c.EmployeeId)
+                .IsRequired(false);
         }
 
         public DbSet<Employee> Employees { get; set; }
