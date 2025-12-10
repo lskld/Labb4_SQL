@@ -11,6 +11,6 @@ namespace Labb4_SQL.Models
         public int CourseId { get; set; }
         [StringLength(100)]
         public required string CourseName { get; set; }
-        public ICollection<ClassCourse> ClassCourses { get; set; } = new List<ClassCourse>();
+        public ICollection<Class> Classes { get; set; } = new List<Class>();
     }
 }

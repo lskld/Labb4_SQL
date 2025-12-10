@@ -13,6 +13,6 @@ namespace Labb4_SQL.Models
         public ICollection<Student> Students { get; set; } = new List<Student>();
         public int EmployeeId { get; set; }
         public Employee Teacher { get; set; } = null!;
-        public ICollection<ClassCourse> ClassCourses { get; set; } = new List<ClassCourse>();
+        public ICollection<Course> Courses { get; set; } = new List<Course>();
     }
 }
