@@ -9,10 +9,13 @@ namespace Labb4_SQL.Models
     {
         [Key]
         public int ClassId { get; set; }
+        [StringLength(100)]
         public required string ClassName { get; set; }
+
         public ICollection<Student> Students { get; set; } = new List<Student>();
-        public int? EmployeeId { get; set; }
-        public Employee? ResponsibleTeacher { get; set; } 
         public ICollection<Course> Courses { get; set; } = new List<Course>();
+
+        public int? EmployeeId { get; set; }
+        public Employee? ResponsibleTeacher { get; set; }
     }
 }

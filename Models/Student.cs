@@ -15,6 +15,7 @@ namespace Labb4_SQL.Models
         public required string LastName { get; set; }
         [StringLength(13)]
         public string? PersonalNumber { get; set; }
+
         public int ClassId { get; set; }
         public Class Class { get; set; } = null!;
     }
