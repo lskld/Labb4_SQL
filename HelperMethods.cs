@@ -69,5 +69,16 @@ namespace Labb4_SQL
             }
                 
         }
+
+        public static void ShowActiveCourses(SchoolDbContext context)
+        {
+            var activeCourses = context.Courses
+                .Where(c => c.IsActive)
+                .ToList();
+
+            Console.WriteLine("All active courses in the school:");
+            foreach (var course in activeCourses)
+                Console.WriteLine($"Status: Active | Course Name: {course}");
+        }
     }
 }

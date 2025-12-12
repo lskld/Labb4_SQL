@@ -40,6 +40,7 @@ namespace Labb4_SQL
                         break;
 
                     case "See list of active courses":
+                        HelperMethods.ShowActiveCourses(context);
                         break;
 
                     case "Grade a student":
