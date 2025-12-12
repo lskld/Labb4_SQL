@@ -35,7 +35,8 @@ namespace Labb4_SQL
                         break;
 
                     case "Show information about all students":
-                        ChooseClass(context);
+                        var classChoice = ChooseClass(context);
+                        HelperMethods.ShowStudentInformation(context, classChoice);
                         break;
 
                     case "See list of active courses":
@@ -46,7 +47,7 @@ namespace Labb4_SQL
                 }
             }
         }
-        public static void ChooseClass(SchoolDbContext context)
+        public static string ChooseClass(SchoolDbContext context)
         {
             var classes = context.Classes
                 .Select(c => c.ClassName)
@@ -58,7 +59,7 @@ namespace Labb4_SQL
                 .PageSize(10)
                 .AddChoices(classes));
 
-            HelperMethods.ShowStudentInformation(context, classChoice);
+            return classChoice;
         }
     }
 }

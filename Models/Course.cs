@@ -14,5 +14,11 @@ namespace Labb4_SQL.Models
         public bool IsActive { get; set; }
 
         public ICollection<Class> Classes { get; set; } = new List<Class>();
+        public ICollection<Grade> Grades { get; set; } = new List<Grade>();
+
+        public override string ToString()
+        {
+            return $"{CourseName}";
+        }
     }
 }
