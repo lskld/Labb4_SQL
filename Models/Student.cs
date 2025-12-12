@@ -18,5 +18,10 @@ namespace Labb4_SQL.Models
 
         public int ClassId { get; set; }
         public Class Class { get; set; } = null!;
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName} | Class: {Class.ClassName}";
+        }
     }
 }

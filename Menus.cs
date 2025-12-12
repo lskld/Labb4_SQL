@@ -35,6 +35,7 @@ namespace Labb4_SQL
                         break;
 
                     case "Show information about all students":
+                        ChooseClass(context);
                         break;
 
                     case "See list of active courses":
@@ -44,6 +45,20 @@ namespace Labb4_SQL
                         break;
                 }
             }
+        }
+        public static void ChooseClass(SchoolDbContext context)
+        {
+            var classes = context.Classes
+                .Select(c => c.ClassName)
+                .ToList();
+
+            var classChoice = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                .Title("Please choose one of the following classes:")
+                .PageSize(10)
+                .AddChoices(classes));
+
+            HelperMethods.ShowStudentInformation(context, classChoice);
         }
     }
 }

@@ -28,5 +28,10 @@ namespace Labb4_SQL
                 Console.WriteLine($"{department.DepartmentName}: {teachers.Count} teachers");
             }
         }
+
+        public static void ShowStudentInformation(SchoolDbContext context, string classChoice)
+        {
+            //Next step to develop
+        }
     }
 }
