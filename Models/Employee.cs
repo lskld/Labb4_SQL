@@ -23,5 +23,11 @@ namespace Labb4_SQL.Models
         public Role Role { get; set; } = null!;
 
         public Class? ResponsibleForClass { get; set; }
+
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName} | Employed: [{YearsEmployed}] years | Salary: [{Salary}] EUR | Department: {Department.DepartmentName} | Role: {Role.RoleName}";
+        }
     }
 }
