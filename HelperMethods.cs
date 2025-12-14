@@ -80,5 +80,28 @@ namespace Labb4_SQL
             foreach (var course in activeCourses)
                 Console.WriteLine($"Status: Active | Course Name: {course}");
         }
+
+        public static void GradeStudent(SchoolDbContext context, Course course, Student student, char grade, Employee teacher)
+        {
+            if (teacher != null && student != null && course != null)
+            {
+                Grade newGrade = new Grade
+                {
+                    SetGrade = grade,
+                    GradingDate = DateOnly.FromDateTime(DateTime.Today.AddYears(91)),
+                    EmployeeId = teacher.EmployeeId,
+                    StudentId = student.StudentId,
+                    CourseId = course.CourseId
+                };
+                
+                context.Grades.Add(newGrade);
+                context.SaveChanges();
+            }
+
+            else
+            {
+                Console.WriteLine("Necessary information is missing. Try again.");
+            }
+        }
     }
 }

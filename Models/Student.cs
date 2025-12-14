@@ -21,7 +21,7 @@ namespace Labb4_SQL.Models
 
         public override string ToString()
         {
-            return $"{FirstName} {LastName} | Class: {Class.ClassName}";
+            return $"{FirstName} {LastName}";
         }
     }
 }
