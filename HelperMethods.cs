@@ -39,10 +39,9 @@ namespace Labb4_SQL
 
             var gradesForClass = context.Grades
                 .Include(g => g.Student)
-                    .ThenInclude(s => s.Class)
                 .Include(g => g.Course)
                 .Where(g => g.Student.Class.ClassName == classChoice)
-                .ToList();                
+                .ToList();
 
             foreach (var student in studentsInClass)
             {
@@ -51,23 +50,21 @@ namespace Labb4_SQL
                 foreach (var course in student.Class.Courses)
                 {
                     var gradeForCourse = gradesForClass
-                        .Where(g => g.StudentId == student.StudentId)
-                        .Where(g => g.Course == course)
-                        .ToList();
-                    
-                    if(course.IsActive)
+                        .FirstOrDefault(g => g.StudentId == student.StudentId && g.CourseId == course.CourseId);
+
+                    if (gradeForCourse != null)
                     {
-                        Console.WriteLine($"{course} | Not Graded");
+                        Console.WriteLine($"{course} | Grade: {gradeForCourse.SetGrade}");
                     }
+
                     else
                     {
-                        foreach (var grade in gradeForCourse)
-                            Console.WriteLine($"{course} | Grade: {grade}");
+                        Console.WriteLine($"{course} | Grade: Not Graded");
                     }
                 }
+
                 Console.WriteLine("\n--------------------------------------\n");
             }
-                
         }
 
         public static void ShowActiveCourses(SchoolDbContext context)
