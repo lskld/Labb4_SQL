@@ -9,15 +9,20 @@ namespace Labb4_SQL
 {
     public class Menus
     {
-        static bool runProgram = true;
+        private static bool _runProgram = true;
         public static void MainMenu()
         {
-            while(runProgram)
+            while(_runProgram)
             {
                 Console.Clear();
+                AnsiConsole.Write(
+                    new FigletText("Space School Database")
+                        .LeftJustified()
+                        .Color(Color.Red));
+
                 var menuChoice = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
-                .Title("Welcome to the Schools internal Databse. Please use the menu below to proceed.")
+                .Title("Welcome to the Space School internal Database. Please use the menu below to proceed.")
                 .PageSize(10)
                 .AddChoices(new[]
                 {
@@ -57,8 +62,8 @@ namespace Labb4_SQL
                         HelperMethods.GradeStudent(context, course, student, grade, gradingTeacher);
                         break;
                     case "Exit program":
-                        Console.WriteLine("Goodbye");
-                        runProgram = false;
+                        AnsiConsole.WriteLine("Goodbye");
+                        _runProgram = false;
                         break;
                 }
             }

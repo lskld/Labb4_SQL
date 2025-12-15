@@ -1,5 +1,6 @@
 ﻿using Labb4_SQL.Models;
 using Microsoft.EntityFrameworkCore;
+using Spectre.Console;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,7 +28,7 @@ namespace Labb4_SQL
 
                 Console.WriteLine($"{department.DepartmentName}: {teachers.Count} teachers");
             }
-            Console.WriteLine("\nPress any key to continue...");
+            AnsiConsole.WriteLine("\nPress any key to continue...");
             Console.ReadKey();
         }
 
@@ -47,7 +48,7 @@ namespace Labb4_SQL
 
             foreach (var student in studentsInClass)
             {
-                Console.WriteLine($"Student Name: {student.FirstName} {student.LastName}\nClass: {student.Class.ClassName}\n\nCourses and grades:");
+                AnsiConsole.WriteLine($"Student Name: {student.FirstName} {student.LastName}\nClass: {student.Class.ClassName}\n\nCourses and grades:");
 
                 foreach (var course in student.Class.Courses)
                 {
@@ -56,18 +57,18 @@ namespace Labb4_SQL
 
                     if (gradeForCourse != null)
                     {
-                        Console.WriteLine($"{course} | Grade: {gradeForCourse.SetGrade}");
+                        AnsiConsole.WriteLine($"{course} | Grade: {gradeForCourse.SetGrade}");
                     }
 
                     else
                     {
-                        Console.WriteLine($"{course} | Grade: Not Graded");
+                        AnsiConsole.WriteLine($"{course} | Grade: Not Graded");
                     }
                 }
 
-                Console.WriteLine("\n--------------------------------------\n");
+                AnsiConsole.WriteLine("\n--------------------------------------\n");
             }
-            Console.WriteLine("\nPress any key to continue...");
+            AnsiConsole.WriteLine("\nPress any key to continue...");
             Console.ReadKey();
         }
 
@@ -77,11 +78,11 @@ namespace Labb4_SQL
                 .Where(c => c.IsActive)
                 .ToList();
 
-            Console.WriteLine("All active courses in the school:");
+            AnsiConsole.WriteLine("All active courses in the school:");
             foreach (var course in activeCourses)
-                Console.WriteLine($"Status: Active | Course Name: {course}");
+                AnsiConsole.WriteLine($"Status: Active | Course Name: {course}");
 
-            Console.WriteLine("\nPress any key to continue...");
+            AnsiConsole.WriteLine("\nPress any key to continue...");
             Console.ReadKey();
         }
 
@@ -101,14 +102,14 @@ namespace Labb4_SQL
                 context.Grades.Add(newGrade);
                 context.SaveChanges();
 
-                Console.WriteLine("The grade was successfully set and added to the database.\n");
-                Console.WriteLine("\nPress any key to continue...");
+                AnsiConsole.WriteLine("The grade was successfully set and added to the database.\n");
+                AnsiConsole.WriteLine("\nPress any key to continue...");
                 Console.ReadKey();
             }
 
             else
             {
-                Console.WriteLine("Necessary information is missing. Try again.");
+                AnsiConsole.WriteLine("Necessary information is missing. Try again.");
             }
         }
     }
