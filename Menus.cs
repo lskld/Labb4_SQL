@@ -9,9 +9,13 @@ namespace Labb4_SQL
 {
     public class Menus
     {
+        static bool runProgram = true;
         public static void MainMenu()
         {
-            var menuChoice = AnsiConsole.Prompt(
+            while(runProgram)
+            {
+                Console.Clear();
+                var menuChoice = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                 .Title("Welcome to the Schools internal Databse. Please use the menu below to proceed.")
                 .PageSize(10)
@@ -20,9 +24,11 @@ namespace Labb4_SQL
                     "Check amount of teachers in each department",
                     "Show information about all students",
                     "See list of active courses",
-                    "Grade a student"
+                    "Grade a student",
+                    "Exit program"
                 }));
-            MainMenuChoices(menuChoice);
+                MainMenuChoices(menuChoice);
+            }      
         }
         public static void MainMenuChoices(string choiceString)
         {
@@ -49,6 +55,10 @@ namespace Labb4_SQL
                         var grade = ChooseGrade();
                         var gradingTeacher = ConfirmCorrectTeacher(student);
                         HelperMethods.GradeStudent(context, course, student, grade, gradingTeacher);
+                        break;
+                    case "Exit program":
+                        Console.WriteLine("Goodbye");
+                        runProgram = false;
                         break;
                 }
             }

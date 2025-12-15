@@ -27,6 +27,8 @@ namespace Labb4_SQL
 
                 Console.WriteLine($"{department.DepartmentName}: {teachers.Count} teachers");
             }
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
         }
 
         public static void ShowStudentInformation(SchoolDbContext context, string classChoice)
@@ -65,6 +67,8 @@ namespace Labb4_SQL
 
                 Console.WriteLine("\n--------------------------------------\n");
             }
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
         }
 
         public static void ShowActiveCourses(SchoolDbContext context)
@@ -76,6 +80,9 @@ namespace Labb4_SQL
             Console.WriteLine("All active courses in the school:");
             foreach (var course in activeCourses)
                 Console.WriteLine($"Status: Active | Course Name: {course}");
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
         }
 
         public static void GradeStudent(SchoolDbContext context, Course course, Student student, char grade, Employee teacher)
@@ -93,6 +100,10 @@ namespace Labb4_SQL
                 
                 context.Grades.Add(newGrade);
                 context.SaveChanges();
+
+                Console.WriteLine("The grade was successfully set and added to the database.\n");
+                Console.WriteLine("\nPress any key to continue...");
+                Console.ReadKey();
             }
 
             else
