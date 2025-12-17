@@ -18,6 +18,16 @@ namespace Labb4_SQL.Models
 
         public int DepartmentId { get; set; }
         public Department Department { get; set; } = null!;
+
+        public int RoleId { get; set; }
+        public Role Role { get; set; } = null!;
+
         public Class? ResponsibleForClass { get; set; }
+
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName} | Employed: [{YearsEmployed}] years | Salary: [{Salary}] EUR | Department: {Department.DepartmentName} | Role: {Role.RoleName}";
+        }
     }
 }

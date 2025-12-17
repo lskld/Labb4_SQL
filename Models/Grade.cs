@@ -20,5 +20,10 @@ namespace Labb4_SQL.Models
 
         public int CourseId { get; set; }
         public Course Course { get; set; } = null!;
+
+        public override string ToString()
+        {
+            return $"{SetGrade}";
+        }
     }
 }
