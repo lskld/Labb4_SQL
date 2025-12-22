@@ -90,26 +90,41 @@ namespace Labb4_SQL
         {
             if (teacher != null && student != null && course != null)
             {
-                Grade newGrade = new Grade
+                using var transaction = context.Database.BeginTransaction();
+                try
                 {
-                    SetGrade = grade,
-                    GradingDate = DateOnly.FromDateTime(DateTime.Today.AddYears(91)),
-                    EmployeeId = teacher.EmployeeId,
-                    StudentId = student.StudentId,
-                    CourseId = course.CourseId
-                };
-                
+                    Grade newGrade = new Grade
+                    {
+                        SetGrade = grade,
+                        GradingDate = DateOnly.FromDateTime(DateTime.Today.AddYears(91)),
+                        EmployeeId = teacher.EmployeeId,
+                        StudentId = student.StudentId,
+                        CourseId = course.CourseId
+                    };
+
                 context.Grades.Add(newGrade);
                 context.SaveChanges();
+                transaction.Commit();
 
                 AnsiConsole.WriteLine("The grade was successfully set and added to the database.\n");
                 AnsiConsole.WriteLine("\nPress any key to continue...");
                 Console.ReadKey();
+                }
+                
+                catch(Exception ex)
+                {
+                    transaction.Rollback();
+                    AnsiConsole.WriteLine("Oops. Something went wrong. No changes were saved. Please try again.");
+                    AnsiConsole.WriteLine("\nPress any key to continue...");
+                    Console.ReadKey();
+                }
             }
 
             else
             {
                 AnsiConsole.WriteLine("Necessary information is missing. Try again.");
+                AnsiConsole.WriteLine("\nPress any key to continue...");
+                Console.ReadKey();
             }
         }
     }
