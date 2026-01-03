@@ -10,6 +10,11 @@ namespace Labb4_SQL
     public class Menus
     {
         private static bool _runProgram = true;
+
+        /// <summary>
+        /// Displays welcome message in ASCII art and prompts user a menu of choices
+        /// using AnsiConsole.
+        /// </summary>
         public static void MainMenu()
         {
             while(_runProgram)
@@ -35,6 +40,11 @@ namespace Labb4_SQL
                 MainMenuChoices(menuChoice);
             }      
         }
+        
+        /// <summary>
+        /// Takes in a string from the Main Menu choices and uses a switch case to 
+        /// execute different methods depending on the choice. 
+        /// </summary>
         public static void MainMenuChoices(string choiceString)
         {
             using (var context = new SchoolDbContext())
@@ -68,6 +78,12 @@ namespace Labb4_SQL
                 }
             }
         }
+        
+        /// <summary>
+        /// Takes in the database context, returns a list of classes by their names and 
+        /// prompts the user with a choice menu of all classes. Returns the chosen class
+        /// name as a string.
+        /// </summary>
         public static string ChooseClass(SchoolDbContext context)
         {
             var classes = context.Classes
@@ -83,6 +99,11 @@ namespace Labb4_SQL
             return classChoice;
         }
 
+        /// <summary>
+        /// Takes in the database contex. Sorts out all Courses by their name that are 
+        /// status active. Prompts the user to choose one active course, and returns that
+        /// course as a Course object. 
+        /// </summary>
         public static Course? ChooseCourse(SchoolDbContext context)
         {
             var activeCourses = context.Courses
@@ -105,6 +126,11 @@ namespace Labb4_SQL
             return selectedCourse;
         }
 
+        /// <summary>
+        /// Takes in database context and a string holding a name of a course. Makes a list of students
+        /// and checks if they belong to the chosen course. Sums those students and prompts the
+        /// user to choose one of them, that is returned as a Student object. 
+        /// </summary>
         public static Student? ChooseStudentByCourse(SchoolDbContext context, Course chosenCourse)
         {
             var students = context.Students
@@ -142,6 +168,11 @@ namespace Labb4_SQL
 
             return selectedStudent;
         }
+        
+        /// <summary>
+        /// Prompts the user a menu to choose a grade from F => A and returns the
+        /// choice as a char.
+        /// </summary>
         public static char ChooseGrade()
         {
             var gradeChoice = AnsiConsole.Prompt(
@@ -155,6 +186,11 @@ namespace Labb4_SQL
             return gradeChoiceChar;
         }
 
+        /// <summary>
+        /// Takes in a student object, and prompts the user to confirm that they are the 
+        /// teacher responsible for that student. Returns the Employee object if true or null
+        /// if false. 
+        /// </summary>
         public static Employee? ConfirmCorrectTeacher(Student student)
         {
             var teacher = student.Class.ResponsibleTeacher;

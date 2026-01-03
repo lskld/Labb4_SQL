@@ -9,6 +9,10 @@ namespace Labb4_SQL
 {
     public class HelperMethods
     {
+        /// <summary>
+        /// Loops through all departments, and lists the amount of Employee objects
+        /// with the "Teacher" Role in those departments.
+        /// </summary>
         public static void ShowTeachersInDepartment(SchoolDbContext context)
         {
             var departments = context.Departments
@@ -32,6 +36,10 @@ namespace Labb4_SQL
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Takes in a chosen class name as a string, and returns all Student objects in that class,
+        /// aswell as their name, class, courses and grades for those courses. 
+        /// </summary>
         public static void ShowStudentInformation(SchoolDbContext context, string classChoice)
         {
             var studentsInClass = context.Students
@@ -72,6 +80,9 @@ namespace Labb4_SQL
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Prints all Course objects that have status IsActive = True
+        /// </summary>
         public static void ShowActiveCourses(SchoolDbContext context)
         {
             var activeCourses = context.Courses
@@ -86,6 +97,11 @@ namespace Labb4_SQL
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Takes in all necessary information to create a new Grade object, and uses Transactions
+        /// to safely try and create that object and save the changes to the database. If anything
+        /// goes wrong no information will be saved to Db. 
+        /// </summary>
         public static void GradeStudent(SchoolDbContext context, Course course, Student student, char grade, Employee teacher)
         {
             if (teacher != null && student != null && course != null)
